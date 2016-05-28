@@ -1,5 +1,39 @@
 (function(global) {
 
+function formFile(sequence, section, frame) {
+	var folder = section.folder || sequence.opts.folder || './',
+		fileName = section.fileName || sequence.opts.fileName || '###',
+		fileType = section.fileType || sequence.opts.fileType || 'png';
+	if(folder.slice(-1) !== '/') {
+		folder += '/';
+	}
+	if(_.isNaN(frame)) {
+		throw new TypeError('Frame is NaN');
+	}
+	return `${folder}${fileName}.${fileType}`.replace(/(#+)/, match => {
+			return _.padStart(frame, match.length, 0);
+		});
+}
+
+function fillFrames(frames) {
+	var offset = frames[0],
+		end = frames[1],
+		reverse = offset > end;
+	if(reverse) {
+		var a = offset;
+		offset = end;
+		end = a;
+	}
+	let arr = Array.apply(null, Array(Math.abs(end - offset + 1)))
+		.map(function(n, i) {
+				return offset + i;
+			});
+	if(reverse) {
+		arr.reverse();
+	}
+	return arr;
+}
+
 function ImageSequence(options) {
 	this.opts = _.clone(options || {});
 	this.sequence = _.clone(this.opts.sequence || []);
