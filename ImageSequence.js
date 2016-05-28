@@ -1,14 +1,14 @@
 (function(global) {
 
 function ImageSequence(options) {
-	this.opts = options;
-	this.sequence = _.clone(options.sequence || []);
-	this.element = options.element || document.createElement('div');
-	this.folder = options.folder || './';
-	this.fileName = options.fileName || '###';
-	this.fileType = options.fileType || 'png';
-	this.fps = options.fps || 30;
-	this.onDraw = options.onDraw || null;
+	this.opts = _.clone(options || {});
+	this.sequence = _.clone(this.opts.sequence || []);
+	this.element = this.opts.element || document.createElement('div');
+	this.folder = this.opts.folder || './';
+	this.fileName = this.opts.fileName || '###';
+	this.fileType = this.opts.fileType || 'png';
+	this.fps = this.opts.fps || 30;
+	this.onDraw = this.opts.onDraw || null;
 	this.playing = false;
 	this.loading = false;
 	this.frame = 0;
