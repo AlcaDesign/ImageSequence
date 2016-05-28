@@ -57,7 +57,6 @@ ImageSequence.prototype.convertSequence = function convertSequence() {
 ImageSequence.prototype._imageLoaded = function _imageLoaded() {
 	this.preloadElements.total += 1;
 	if(this.preloadElements.total >= this.allFrames.length) {
-		console.log('Done loading');
 		this.play();
 	}
 };
