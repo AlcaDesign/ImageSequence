@@ -25,7 +25,7 @@ function fillFrames(frames) {
 		end = a;
 	}
 	let arr = Array.apply(null, Array(Math.abs(end - offset + 1)))
-		.map(function(n, i) {
+		.map((n, i) => {
 				return offset + i;
 			});
 	if(reverse) {
