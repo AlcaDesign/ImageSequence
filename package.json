@@ -1,0 +1,31 @@
+{
+  "name": "imagesequence",
+  "version": "0.1.0",
+  "description": "Easily create a sequence of images which unlike video, allows transparency.",
+  "main": "ImageSequence.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlcaDesign/ImageSequence.git"
+  },
+  "keywords": [
+    "image",
+    "sequence",
+    "gif",
+    "animation",
+    "png",
+    "transpent",
+    "translucent"
+  ],
+  "author": "Jacob \"Alca\" Foster",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlcaDesign/ImageSequence/issues"
+  },
+  "homepage": "https://github.com/AlcaDesign/ImageSequence#readme",
+  "dependencies": {
+    "lodash": "^4.13.1"
+  }
+}
