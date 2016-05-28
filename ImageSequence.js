@@ -4,9 +4,13 @@ function ImageSequence(options) {
 	this.opts = options;
 	this.sequence = _.clone(options.sequence || []);
 	this.element = options.element || document.createElement('div');
+	this.folder = options.folder || './';
+	this.fileName = options.fileName || '###';
+	this.fileType = options.fileType || 'png';
+	this.fps = options.fps || 30;
+	this.onDraw = options.onDraw || null;
 	this.playing = false;
 	this.loading = false;
-	this.fps = options.fps || 30;
 	this.frame = 0;
 	this.anim = null;
 	this.holding = false;
@@ -14,7 +18,6 @@ function ImageSequence(options) {
 	this.preloadElements = [];
 	this.allFrames = [];
 	this.preloadElements.total = 0;
-	this.onDraw = options.onDraw || null;
 	if(this.sequence.length > 0) {
 		this.convertSequence();
 		this.load();
