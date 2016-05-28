@@ -25,17 +25,17 @@ function ImageSequence(options) {
 }
 
 ImageSequence.prototype.convertSequence = function convertSequence() {
-	var newSequence = this.sequence.map(section => {
-				if(Array.isArray(section) || typeof section === 'number') {
+	var newSequence = _.map(this.sequence, section => {
+				if(_.isArray(section) || _.isNumber(section)) {
 					section = {
 							frames: section
 						};
 				}
-				if(!('hold' in section) || typeof section.hold !== 'number' ||
-						section.hold == 0) {
+				if(!_.has(section, 'hold') || !_.isNumber(section.hold) ||
+						section.hold === 0) {
 					section.hold = false;
 				}
-				if(typeof section.frames === 'number') {
+				if(_.isNumber(section.frames)) {
 					section.frames = [ section.frames ];
 				}
 				else if(section.frames.length === 0) {
@@ -44,9 +44,9 @@ ImageSequence.prototype.convertSequence = function convertSequence() {
 				else if(section.frames.length === 2) {
 					section.frames = fillFrames(section.frames);
 				}
-				section.frames = section.frames.map(frame =>
+				section.frames = _.map(section.frames, frame =>
 						formFile(this, section, frame));
-				section.frames = section.frames.map(frame =>
+				section.frames = _.map(section.frames, frame =>
 						({ url: frame, hold: false }));
 				section.frames[section.frames.length-1].hold = section.hold;
 				return section;
@@ -66,7 +66,7 @@ ImageSequence.prototype.load = function load() {
 	var allFrames = _.concat.apply(_, _.map(this.sequence, 'frames'));
 	this.allFrames = allFrames;
 	this.preloadElements.total = 0;
-	allFrames.map(file => {
+	_.map(allFrames, file => {
 			var img = new Image();
 			img.onload = this._imageLoaded.bind(this);
 			img.src = file.url;
@@ -100,7 +100,7 @@ ImageSequence.prototype.draw = function draw() {
 
 ImageSequence.prototype.play = function play(frameOffset) {
 	this.playing = true;
-	if(frameOffset !== undefined) {
+	if(!_.isUndefined(frameOffset)) {
 		this.frame = frameOffset;
 	}
 	clearTimeout(this.anim);
@@ -114,10 +114,10 @@ ImageSequence.prototype.pause = function pause() {
 
 ImageSequence.prototype.hold = function hold(time) {
 	this.holding = true;
-	if(time === undefined) {
+	if(_.isUndefined(time)) {
 		time = 0;
 	}
-	else if(typeof time !== 'number') {
+	else if(!_.isNumber(time)) {
 		time = +time;
 	}
 	if(_.isNaN(time)) {
