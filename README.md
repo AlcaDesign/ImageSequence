@@ -12,7 +12,7 @@ new ImageSequence({
 						frames: [ 0 ],
 						hold: false
 					},
-				[ 0 ]
+				[ 0 ] // Shorthand for the previous object
 			],
 		element: document.getElementById('display'),
 		folder: './',
