@@ -128,7 +128,9 @@
 		}
 		this.element.style.backgroundImage = 'url(' + frame.url + ')';
 		this.frame++;
-		this.anim = setTimeout(this.draw.bind(this), 1000 / this.fps);
+		if (this.playing) {
+			this.anim = setTimeout(this.draw.bind(this), 1000 / this.fps);
+		}
 		if (this.onDraw) {
 			this.onDraw(this, frame);
 		}
