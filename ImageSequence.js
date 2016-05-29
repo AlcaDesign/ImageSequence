@@ -50,8 +50,8 @@ function ImageSequence(options) {
 	this.holding = false;
 	this.holdTo = -1;
 	this.preloadElements = [];
-	this.allFrames = [];
 	this.preloadElements.total = 0;
+	this.allFrames = [];
 	if(this.sequence.length > 0) {
 		this.convertSequence();
 		this.load();
@@ -91,12 +91,14 @@ ImageSequence.prototype.convertSequence = function convertSequence() {
 ImageSequence.prototype._imageLoaded = function _imageLoaded() {
 	this.preloadElements.total += 1;
 	if(this.preloadElements.total >= this.allFrames.length) {
+		this.loading = false;
 		this.play();
 	}
 };
 
 ImageSequence.prototype.load = function load() {
 	var allFrames = _.concat.apply(_, _.map(this.sequence, 'frames'));
+	this.loading = true;
 	this.allFrames = allFrames;
 	this.preloadElements.total = 0;
 	_.map(allFrames, file => {
