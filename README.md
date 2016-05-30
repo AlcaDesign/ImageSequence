@@ -4,10 +4,14 @@
 
 Full examples are available in the "examples" folder. Run `npm install` first because ImageSequence requires lodash right now.
 
+[Here is the "basic" example on jdfiddle.](https://jsfiddle.net/q0jwnvcn/)
+
 ```javascript
 
+// Mostly defaults:
+
 new ImageSequence({
-		sequence: [
+		sequence: [ // Empty by default
 				{
 						frames: [ 0 ],
 						hold: false
@@ -27,6 +31,38 @@ new ImageSequence({
 
 
 ## API
+
+### Instance Options
+
+A object containing some of the following:
+
+#### sequence `array`
+
+The sequence array.
+
+#### element `DOM Instance`
+
+The DOM element to change the background of.
+
+#### folder `string`
+
+The folder for all frames.
+
+#### fileName `string`
+
+The file name pattern for all frames.
+
+#### fileType `string`
+
+The file type for all frames.
+
+#### fps `number`
+
+The FPS for all frames.
+
+#### onDraw `function`
+
+A function that gets called when a frame is "drawn" to the DOM element.
 
 
 
@@ -108,7 +144,7 @@ An array containing all of the full formatted frames.
 
 "Draw" the next frame of the animation. Loops to the next frame when `playing` is true.
 
-#### .play(`int` frameOffset)
+#### .play([`int` frameOffset])
 
 Starts the draw loop and lets it continue. `frameOffset` can be used to set the frame that needs to be drawn. (Good for restarting the animation or jumping ahead)
 
