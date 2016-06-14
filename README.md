@@ -4,7 +4,7 @@
 
 Full examples are available in the "examples" folder. Run `npm install` first because ImageSequence requires lodash right now.
 
-[Here is the "basic" example on jdfiddle.](https://jsfiddle.net/q0jwnvcn/)
+[Here is the "basic" example on JSFiddle.](https://jsfiddle.net/q0jwnvcn/)
 
 ```javascript
 
