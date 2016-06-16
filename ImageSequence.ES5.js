@@ -105,7 +105,8 @@
 		this.loading = true;
 		this.allFrames = allFrames;
 		this.preloadElements.total = 0;
-		_.map(allFrames, function (file) {
+		_.forEach(allFrames, function (file, index) {
+			file.number = index;
 			var img = new Image();
 			img.onload = _this2._imageLoaded.bind(_this2);
 			img.src = file.url;
