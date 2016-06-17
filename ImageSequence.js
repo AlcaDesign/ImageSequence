@@ -25,9 +25,7 @@ function fillFrames(frames) {
 		end = a;
 	}
 	let arr = Array.apply(null, Array(Math.abs(end - offset + 1)))
-		.map((n, i) => {
-				return offset + i;
-			});
+			.map((n, i) => offset + i);
 	if(reverse) {
 		arr.reverse();
 	}
@@ -79,9 +77,11 @@ ImageSequence.prototype.convertSequence = function convertSequence() {
 					section.frames = fillFrames(section.frames);
 				}
 				section.frames = _.map(section.frames, frame =>
-						formFile(this, section, frame));
-				section.frames = _.map(section.frames, frame =>
-						({ url: frame, hold: false }));
+						({ 
+							url: formFile(this, section, frame),
+							hold: false,
+							number: frame
+						}));
 				section.frames[section.frames.length-1].hold = section.hold;
 				return section;
 			});
@@ -102,7 +102,7 @@ ImageSequence.prototype.load = function load() {
 	this.allFrames = allFrames;
 	this.preloadElements.total = 0;
 	_.forEach(allFrames, (file, index) => {
-			file.number = index;
+			file.index = index;
 			var img = new Image();
 			img.onload = this._imageLoaded.bind(this);
 			img.src = file.url;

@@ -79,10 +79,11 @@
 				section.frames = fillFrames(section.frames);
 			}
 			section.frames = _.map(section.frames, function (frame) {
-				return formFile(_this, section, frame);
-			});
-			section.frames = _.map(section.frames, function (frame) {
-				return { url: frame, hold: false };
+				return {
+					url: formFile(_this, section, frame),
+					hold: false,
+					number: frame
+				};
 			});
 			section.frames[section.frames.length - 1].hold = section.hold;
 			return section;
@@ -106,7 +107,7 @@
 		this.allFrames = allFrames;
 		this.preloadElements.total = 0;
 		_.forEach(allFrames, function (file, index) {
-			file.number = index;
+			file.index = index;
 			var img = new Image();
 			img.onload = _this2._imageLoaded.bind(_this2);
 			img.src = file.url;
