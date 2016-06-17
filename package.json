@@ -1,6 +1,6 @@
 {
   "name": "imagesequence",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Easily create a sequence of images which unlike video, allows transparency.",
   "main": "ImageSequence.js",
   "scripts": {
